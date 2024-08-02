@@ -1,0 +1,266 @@
+-----------------------------------------------------------------------------------------------
+# To create a database
+
+create database myDB;
+-----------------------------------------------------------------------------------------------
+# To use it
+
+use myDB;
+-----------------------------------------------------------------------------------------------
+# To delete it
+
+drop database myDB;
+-----------------------------------------------------------------------------------------------
+# To make it for read only mode
+
+alter database mydb read only = 1;
+-----------------------------------------------------------------------------------------------
+# To create a table inside the database
+
+create table employees (
+    id int,
+    name varchar(100),
+    salary decimal(5, 2),
+    hire_date date
+);
+-----------------------------------------------------------------------------------------------
+# To rename a table
+
+rename table employees to members;
+-----------------------------------------------------------------------------------------------
+# To delete a table
+
+drop table members;
+-----------------------------------------------------------------------------------------------
+# To add a column to a table
+
+alter table employees
+add email varchar(120)
+-----------------------------------------------------------------------------------------------
+# To rename an existing column inside a table
+
+alter table employees
+rename column id to pk;
+-----------------------------------------------------------------------------------------------
+# To modify a data type of a column
+
+alter table employees
+modify column username varchar(80);
+-----------------------------------------------------------------------------------------------
+# To change a position of a column
+
+alter table employees
+modify column email varchar(120)
+after username; [or first; or last;]
+-----------------------------------------------------------------------------------------------
+# To delete a column 
+
+alter table employees
+drop column email;
+-----------------------------------------------------------------------------------------------
+# To insert values into a table (Not multiple)
+
+insert into employees
+values (1, "james", 39.50, current_date());
+
+# To insert values into a table (Multiple)
+
+insert into employees
+values (), (), (), (), ();
+
+# To insert a specific fields (Default Null)
+
+insert into employees (pk, username)
+values (3, "dexter"); 
+-----------------------------------------------------------------------------------------------
+# To select all the data from a table
+
+select * from employees;
+
+# To select a specified data from a table
+
+select username, pk from employees;
+
+# To select all the data matching pk from a table
+
+select * from employees
+where pk = 1;
+
+# To select all username data matching pk from a table
+
+select username from employees
+where pk = 1;
+
+# You can use [is or and not] [ = <= >= != ]
+select * from employees
+where hourly_pay >= 30 and pk = 1;
+
+# with null use (is)
+
+select * from employees
+where hourly_pay is null;
+-----------------------------------------------------------------------------------------------
+# To set off
+
+set SQL_SAFE_UPDATES = 0;
+-----------------------------------------------------------------------------------------------
+# To update a row in table
+
+update employees
+set hourly_pay = 100
+where pk = 3;
+
+# Multiple
+
+update employees
+set hourly_pay = 99.22, hire_date = "2024-02-22"
+where pk = 4;
+
+# To update all hourly_pay
+
+update employees
+set hourly_pay = null;
+-----------------------------------------------------------------------------------------------
+# To delete a row from a table
+
+delete from employees
+where pk = 4;
+-----------------------------------------------------------------------------------------------
+# with this setting your transactions will not save
+ automatically | use commit to save it
+
+set AUTOCOMMIT = off;
+sql statment
+
+commit; # This mean changes are saved and you can't rollback to it
+-----------------------------------------------------------------------------------------------
+# To back to the prvious commit 
+
+rollback
+-----------------------------------------------------------------------------------------------
+# We use unique to in sure this (id) will not share the same value with other ids
+
+create table customers (
+    id int unique,
+    name varchar(100),
+    join_date date
+);
+alter table customers
+add constraint unique(id);
+-----------------------------------------------------------------------------------------------
+# not null equals this column cannot be null
+
+alter table customers
+modify id int unique not null;
+-----------------------------------------------------------------------------------------------
+# check it's like a condition must be passed to do something on db
+
+create table users (
+    hourly_pay decimal(5, 2),
+    hire_date date,
+    constraint chk_hourly_pay check (hourly_pay >= 20)
+);
+
+# To delete it
+
+alter table users
+drop check chk_hourly_pay;
+-----------------------------------------------------------------------------------------------
+# DEFAULT
+
+create table users (
+    hourly_pay decimal(5, 2) default 0,
+    hire_date date,
+);
+
+alter table employees
+alter salary set default 0;
+-----------------------------------------------------------------------------------------------
+# The primary key is unique constraint: cannot be null,
+ must be unique, A table can have only ONE primary key
+
+create table users(
+	user_id int primary key,
+    username varchar(100)
+);
+
+alter table users add constraint
+primary key(user_id)
+-----------------------------------------------------------------------------------------------
+# by default auto increment set to 1
+
+create table users(
+    id int primary key auto_increment,
+    username varchar(100)
+);
+
+# To set the starting of auto increment
+
+alter table transactions
+auto_increment = 1000;
+-----------------------------------------------------------------------------------------------
+# foreign key is a field in one table refer to the primary key
+ in another table, used to link between tables
+# also used to prevent actions that destroy links between tables
+
+create table transactions(
+ id int primary key auto_increment,
+ amount decimal(5, 2),
+ customer_id int,
+ foreign key(customer_id) references customers(id)
+);
+
+# To delete it
+
+alter table transactions
+drop foreign key transactions_ibfk_1;
+
+# To add to your foreign key a name
+
+alter table transactions
+add constraint fk_id
+foreign key (customer_id)  references customers(id)
+-----------------------------------------------------------------------------------------------
+# The INNER JOIN selects records from a table that matching another
+  table/s and combine them together
+
+select * from transactions
+inner join customers
+on transactions.customer_id = customers.id;
+
+select amount, username from transactions
+inner join customers
+on transactions.customer_id = customers.id;
+-----------------------------------------------------------------------------------------------
+# the LEFT JOIN select all records from left table and
+ matched records from right table
+
+select * from transactions
+left join customers
+on transactions.customer_id = customers.id;
+-----------------------------------------------------------------------------------------------
+# the RIGHT JOIN select all records from right table and
+ matched records from left table
+
+select * from transactions
+right join customers
+on transactions.customer_id = customers.id;
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------
+# 
+-----------------------------------------------------------------------------------------------

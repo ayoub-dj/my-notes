@@ -1,0 +1,234 @@
+<=> Learn linux <=>
+--------------------------------------------------------------------------
+=> find <= To seach for sometings
+
+find .. -name *.txt => to search for files
+-iname => case not senstive
+find . -type d -name js => to search for folders
+d = stand for directory
+--------------------------------------------------------------------------
+=> adduser <= To add a new user on linux
+
+adduser x
+
+cat etc/passwd => To see all users
+--------------------------------------------------------------------------
+=> logout <= To logout
+--------------------------------------------------------------------------
+=> login <= To login
+--------------------------------------------------------------------------
+=> whoami <= To see which user is logged in
+--------------------------------------------------------------------------
+=> deluser x <= To delete a user
+--------------------------------------------------------------------------
+=> passwd x <= To change a user password
+--------------------------------------------------------------------------
+=> addgroup name <= To add a group
+--------------------------------------------------------------------------
+=> usermod -a -G group_name user_name <= 
+To add a user to specified group
+-a == stand for append
+-G == stand for group
+--------------------------------------------------------------------------
+=> groups <= To see the current user in which group
+--------------------------------------------------------------------------
+=> groups dexter <= To see in which group/s
+--------------------------------------------------------------------------
+=> gpasswd -d dexter python <=
+To remove user from a specified group
+--------------------------------------------------------------------------
+=> visudo <= 
+To set some permissions for a specified user
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+dexter  ALL=/usr/bin/top
+to add multiple permission type (,)
+--------------------------------------------------------------------------
+=> visudo <=
+To set some permissions for a specified group
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+%python ALL=/usr/bin/ls, /usr/bin/apt
+--------------------------------------------------------------------------
+=> which command_name <=
+To see the command at any location located
+in the file system
+--------------------------------------------------------------------------
+=> less path_to_file <= To see what file contains
+less /etc/group
+--------------------------------------------------------------------------
+=> delgroup group_name <= To delete a group
+delgroup python
+--------------------------------------------------------------------------
+=> ls -l  <=
+To see some informations about current working dir like: files
+and permissions, time, what this files or folders contain
+ls -l file_name
+
+- # in the beginning stand for file
+d # in the beginning stand for folder
+r # read
+w # write
+x # execute
+-R # stand for all files inside directory
+--------------------------------------------------------------------------
+=> chmod <=
+command allows an administator to set or modify a file's permissions
+chmod [who] [+,-,=] [permission(s)] filename
+
+[who] == [u,g,o,a]
+u # stand for user
+g # stand for group
+o # stand for others
+a # stand for all
+
+chmod -R o=xw js
+chmod  o+r js
+chmod  o-r js
+
+chmod  o-wrx,g-wrx,u-wrx js # Multiple
+--------------------------------------------------------------------------
+=> htop and top <=
+htop and top = a commands to monitoring your system process
+like what servers are runing on you system currently
+--------------------------------------------------------------------------
+=> kill and killall <=
+killall process_name # To kill all processes by target name
+kill id # To kill a process by its ID
+--------------------------------------------------------------------------
+=> ps <= # To see current runing process for the current user
+=> ps a <= # To see all runing process for all user
+=> ps au <= # To see runing process with the owner
+=> ps aux <= # To see all runing processes (only system)
+ps a --help 
+--------------------------------------------------------------------------
+=> ifconfig <= # To see some informations about your network
+ip -4 addr
+ip -6 addr
+--------------------------------------------------------------------------
+=> netstat <= # To monitor your network activities on your machine
+netstat -at # To see all TCP connection
+netstat -l # To see all active ports
+--------------------------------------------------------------------------
+=> curl http_link <= # To send a get request for a specified website
+curl -X POST https://x.com # To send a Post request
+curl -X POST --data "p1=value&p2=value" https://x.com 
+curl -X POST -d p2=value https://x.com 
+curl -o response.txt https://x.com # To save the res into a file
+curl -I https://google.com # To see the header that come with response
+--------------------------------------------------------------------------
+=> SSH <= 
+The Secure Shell (SSH) protocol is a method for sending commands
+to a remote computer 
+# The most commen uses for ssh is to connect to servers, make
+  changes perform upload and exit
+--------------------------------------------------------------------------
+=> ls ~/ .ssh/name <=
+# To see if you have already a ssh on your machine
+--------------------------------------------------------------------------
+=> ssh-keygen -t ed25519 <= # To  generate a new ssh key
+-t # this defines the type of key you are generating
+ed25519 # The name of the algorithm
+--------------------------------------------------------------------------
+# To connect to windows subsystem for linux
+
+first install
+apt install openssh-server
+ssh-keygen -A
+service ssh start
+generate new ssh on window system
+and copy it to user wsl in the .ssh folder with different name
+cp id_rsa.pub /home/authorizd_keys
+and lastly ssh username@ip
+--------------------------------------------------------------------------
+=> FTP <= # Stand (File transfer Protocol) Defualt port 21
+# Is used for tansfer of computer files from a sever to a client computer
+--------------------------------------------------------------------------
+=> ENVIROMENT VARIABLES <=
+# ENVs are components that enable users to store and access accross
+   vrious processes and sessions
+--------------------------------------------------------------------------
+=> env <= # To print all ENVs on your machine
+--------------------------------------------------------------------------
+=> printenv variable_name <= # To print a signle variable by its name
+=> echo $variable_name <= # To print a signle variable by its name
+--------------------------------------------------------------------------
+=> export VAR=ONE <= To define a new variable
+Note # this var is only stored for the current session
+export VAR=newValue # To update a variable
+--------------------------------------------------------------------------
+=> nano .bashrc <= To set a var for all sessions (Only the current user)
+source .bashrc
+export MYTOKEN="yvxucDRkBvxrzDZ-/AabnZjFglcE9LzN-1"
+--------------------------------------------------------------------------
+=> cd etc && nano environment <=
+# To defind a globle var for all seassions & users
+export GLOBLETOKEN="LKDlklkdlk-/Aabn"
+source environment # To update
+--------------------------------------------------------------------------
+=> unset MYTOKEN <= # To remove a variable (Only from the session)
+--------------------------------------------------------------------------
+=> grep <= # is a command to search for matching patterns in a file
+Example # grep (query) (pattern/s ..) file
+-i # Ignore case sensitive
+-v # Select the non-matching query
+-n # Prefix each line with the line number in file
+-w # Find the exact same
+-c # count the number of matching query
+. # Any chars after it
+-r # Seach inside directory files  
+
+You can also use regular expression in a specific appearance
+grep fruit... -i -n -w fruits.txt
+
+# You can also search for files and folders
+ls | grep .py
+
+# You can also search for keyword inside directory of files
+grep -r -i hello files
+--------------------------------------------------------------------------
+=> Shell <= is a command line OS that allows to perform some tasks
+throughout your command like create file and folder
+--------------------------------------------------------------------------
+=> shell scripts <= is a executable file for performing some tasks
+on your shell command line  
+--------------------------------------------------------------------------
+=> CronJob <= 
+is a linux program that allows to users to scheduling tasks to be
+executed sometime in the future (Tasks often be shell scripts)
+* * * * * (1=minute | 2=hour | 3=dOFm | 4=month | 5=dOFw)
+
+* * * * * /home/script.sh or commands
+To change later, run 'select-editor'.
+--------------------------------------------------------------------------
+=> crontab <=
+Is a file containing the schedule of various cron entries that
+should be run at specific time
+
+crontab -l # List all cron jobs for the current user
+crontab -e # Edit crontab entries (Add, Delete, Edit)
+crontab -u username -l # List another user crons
+crontab -u username -e # Edit another user crons
+
+ m h dom mon dow
+*/1 * * * * ls # Run every 1 minute
+11 * * * * echo "Every 15" # Run when your minute include 15PM/15AM
+1,10,15  * * * * echo "Every 1 10 15" # Multiple
+@daily command # Another One
+@reboot command # Another One
+--------------------------------------------------------------------------
+=> uptime <= # Shows the uptime of the system
+--------------------------------------------------------------------------
+=> well message_value <= # To send a message to login users
+=> write username <=
+--------------------------------------------------------------------------
+=> who <= # Shows all users who are logged into the system 
+--------------------------------------------------------------------------
+free # shows you the free/and/used resources for your system
+sort x.txt # Sort a file
+shutdown -h +10 # Off after 10M
+history # Commands History
+man ls # More Informations about the target Command
+whatis mkdir # One Line informations about it
+tail -n 3 file.txt # Shows you the last 3 lines (default 10)
+--------------------------------------------------------------------------

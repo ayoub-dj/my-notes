@@ -1,0 +1,86 @@
+=> what is container in docker <=
+The container is lightweight portable package that includes
+everything your app needs to run like (code, dependencies)
+
+the container provides an isolation that allows you
+to run it in an isolated environment on your base
+system if your system supports docker  
+---------------------------------------------------------------------
+=> what is the base image <=
+The 'FORM' instruction in a Dockerfile is used to build 
+you own custom image for your application
+
+FROM base_image[:tag]
+-----------------------------------------------------------------------
+=> COPY instriction <=
+The COPY instriction in docker is used to copy files or directories
+from the host machine into the the Docker image being built,
+
+It's commonly used to include app code and configuration files and 
+dependencies into the image
+
+COPY . /app # Build a directory inside the docker image file system
+-----------------------------------------------------------------------
+=> WORKDIR instriction <=
+
+The WORKDIR instriction is a DockerFile sets the current
+working directory for subsequent instructions in Dockerfile
+
+WORKDIR /app # Tell Docker the current working dir
+-----------------------------------------------------------------------
+=> CMD instriction <=
+
+The CMD in a Docker sets the default command to run when the container starts
+
+CMD node app.js # run this cmd
+-------------------------------------------------------------------------------
+=> CMD instriction <=
+Is used to build a Docker image from the Dockerfile
+
+ocker build -t image_name:tag path_to_dockerfile
+
+In short, docker build -t creates a Docker image with a specified name and tag
+---------------------------------------------------------------------------------
+=> docker images or docker image ls <=
+
+Show available images list
+---------------------------------------------------------------------------------
+=> docker push ayoubbelghoul/learn-docker:tagname <=
+
+Puch your local docker image to the hub public repo
+---------------------------------------------------------------------------------
+=> docker run learn-docker <=
+
+To run docker image
+---------------------------------------------------------------------------------
+=> docker pull ayoubbelghoul/learn-docker:tagname <=
+
+To fetch a docker image from public repo in your system
+---------------------------------------------------------------------------------
+=> docker ps <=
+
+show a list of all currenlty running containers inside your system
+---------------------------------------------------------------------------------
+=> docker ps -a <=
+
+show a list of all containers inside your system regardless of their state (running or not)
+---------------------------------------------------------------------------------
+=> docker run ubuntu <=
+
+If you execute this command and ubuntu image is not available on your system 
+Docker will attempt to pull the Ubuntu image from The Docker hub repository
+---------------------------------------------------------------------------------
+=> docker run -it (name) <=
+
+Starts a new Docker container and provides an interactive session within it
+
+docker run -it ubuntu
+---------------------------------------------------------------------------------
+=> --rm <=
+
+The --rm flag in Docker automatically removes the container once it exits. 
+It's useful for temporary containers, ensuring your system stays clean
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------

@@ -1,0 +1,201 @@
+--------------------------------------------------------------------------------
+=> check the status of the changing
+
+- git status
+--------------------------------------------------------------------------------
+=> Clone a repo from github
+
+- git clone 'httpLink
+--------------------------------------------------------------------------------
+=> Put files to the staging area
+
+git add *
+git add fileName
+--------------------------------------------------------------------------------
+=> back one step from stagin area 
+
+git reset head FileNAME
+git restore --staged FileNAME
+--------------------------------------------------------------------------------
+to see the remote name
+
+git remote -v
+--------------------------------------------------------------------------------
+=> To grap the branch that you have
+
+git branch
+--------------------------------------------------------------------------------
+=> To push changes and files in the remote repo
+
+git push remoteName (origin) branchName (master)
+--------------------------------------------------------------------------------
+=> bring changes from the remote repo and merge them with my local repo
+
+git pull origin
+--------------------------------------------------------------------------------
+=> bring the configuaration informations
+
+git config --list
+git config --global user.name "james"
+git config --global user.email
+
+To see the full documentation
+git config --help
+
+To see how git grap data
+git config -l --show-origin
+
+To delete a config like user.name
+git config --global --unset user.name
+
+To add new one
+git config --global user.age
+
+To edit the config
+git config --global --edit
+--------------------------------------------------------------------------------
+=> Initialized empty Git repository
+
+git init
+--------------------------------------------------------------------------------
+=> If you create a repo from cmd use the following command
+
+git remote add origin git@github.com:ayoubhost0/bondi.git
+git push -u origin (main || master)
+--------------------------------------------------------------------------------
+=> add aliases to cmd 
+
+git config --global alias.st status # THE ALIAS IS ( git st )
+git config --global alias.cm "commit -m" # THE ALIAS IS ( git cm "HTML FILE ADDED" )
+--------------------------------------------------------------------------------
+=> To see the branches that you have
+
+git branch
+--------------------------------------------------------------------------------
+=> To create a new branch
+
+git branch test
+--------------------------------------------------------------------------------
+=> To use it
+
+git checkout test
+--------------------------------------------------------------------------------
+=> To delete a branch has no changes
+
+git branch -d test
+--------------------------------------------------------------------------------
+=> To delete a branch has changes
+
+git branch -D test
+--------------------------------------------------------------------------------
+=> To create a new branch and use it at the same time
+
+git checkout -b dev-braning
+--------------------------------------------------------------------------------
+=> To rename a branch
+
+git branch -m FRONTEND
+--------------------------------------------------------------------------------
+=> to merge you new branch (FRONTEND) with the local
+
+git checkout master
+git merge FRONTEND
+--------------------------------------------------------------------------------
+=> Save the local files in hidden stach till I need them
+
+git stash
+--------------------------------------------------------------------------------
+=> To see the stash list
+
+git stash list
+--------------------------------------------------------------------------------
+=> To bring the hidden files from hidden stash and make them visible
+
+git stash pop
+--------------------------------------------------------------------------------
+=> Every file saved stash has a unique id and you can add a description
+
+git stash save 'Large file containg some articles' 
+--------------------------------------------------------------------------------
+=> " when you run git stash pop, this cmd takes the last added
+ then remove it from hidden stash " <=
+
+=> " but git stash apply, it doesn't remove it from hidden stach " <=
+--------------------------------------------------------------------------------
+=> To bring the stash by his identifier
+
+git stash pop stash@{0}
+--------------------------------------------------------------------------------
+=> To delete a stash
+
+git stash drop stash@{1}
+git stash drop # recently added
+--------------------------------------------------------------------------------
+=> To see the data inside stash
+
+git stash show
+git stash show stash@{0}
+--------------------------------------------------------------------------------
+=> Create a branch that includes the current stash
+
+git checkout -b newXI stash@{0}
+--------------------------------------------------------------------------------
+=> To see the files that you going to remove from unTracked
+
+git clean -n
+--------------------------------------------------------------------------------
+=> To remove unTracked files
+
+git clean -f
+--------------------------------------------------------------------------------
+=> back a step to the hash commit and make it the head a delete the file from local
+
+git reset --hard (commit hash)
+
+=> After run this to remove the unwanted commit from the remote repo
+
+git push -u origin master --force
+--------------------------------------------------------------------------------
+=> .gitignore file we use it to ignore the files and folders that we donnot need them to be in tarcking
+
+touch .gitignore
+and put the extensions files and folders that you don't need them to be in staging area like:
+ *.txt 
+ *.log
+
+if you have a file or folder related to the same extension and you wanna add it to staging area
+you can put it inside the .gitignore file like:
+ !vip.log
+--------------------------------------------------------------------------------
+=)> even if the folder has ignored by .gitignore file you can add it using the force flag (-f)
+
+git add -f my_notes/
+
+search for (" git ignore patterns ")
+--------------------------------------------------------------------------------
+=> Every project has a tag to create a "light" tag for your project
+the light tag takes the last commit as description
+
+git tag v1.0
+git tag
+v1.0
+git push -u origin v1.0
+--------------------------------------------------------------------------------
+=> create a tag with his own description
+
+git tag -a v2.0 -m "This is the second verson of my project
+git push -u origin v2.0
+--------------------------------------------------------------------------------
+=> To search for a specific tag by it version
+
+git tag -l "v1.*"
+--------------------------------------------------------------------------------
+releases it is like notes or description for your versions
+--------------------------------------------------------------------------------
+=> to delete tags locally
+
+git tag -d v1.1 v1.2 v1.3
+--------------------------------------------------------------------------------
+=> to delete tags from remote repo
+
+git push -u origin --delete v2.0

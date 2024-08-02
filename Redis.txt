@@ -1,0 +1,96 @@
+=> What is redis ? <=
+REDIS is a open-source in memory data store
+   
+=> What is the purpose of redis <=
+=> the purpose of using redis is reducing the lood on servers
+   and for cashing webpages for fast delevery
+
+------------------------------------------------------------------
+=> SET <= to add a string value
+
+set name james
+------------------------------------------------------------------
+=> GET <= To bring a string value
+
+get name
+------------------------------------------------------------------
+=> DEL <= To delete a string value
+
+del name
+------------------------------------------------------------------
+=> EXISTS <= To check if a string key is exists
+
+exists name
+------------------------------------------------------------------
+=> KEYS * <= To bring all available keys
+
+keys *
+------------------------------------------------------------------
+=> FLUSHALL <= To clear the database
+
+flushall
+------------------------------------------------------------------
+=> EXPIRE <= The name will disappear after 10 seconds
+
+expire name 10
+------------------------------------------------------------------
+=> TTL <= Show the remaining time of name expiration
+
+ttl name
+------------------------------------------------------------------
+=> setex <= Set the name with the expiration
+
+setex name 10 james
+------------------------------------------------------------------
+<==> list <==> is not unique
+
+=> LPUSH <= To make a new list in redis
+lpush friends james dexter maria dexter
+
+LPUSH == Left push
+RPUSH == right push
+------------------------------------------------------------------
+=> LRANGE <= To bring the list with specified the start and end
+
+lrange friends 0 -1
+------------------------------------------------------------------------
+=> LPOP | RPOP <=
+Take the left item or the right from the list and remove it
+
+lpop friends
+rpop friends
+------------------------------------------------------------------
+<==> set <==> is unique
+=> SADD <= To define a set
+
+sadd hobbies travaling "weight lifting"
+------------------------------------------------------------------
+=> SMEMBERS <= To bring all values
+
+smembers hobbies
+------------------------------------------------------------------
+=> SREM <= To remove a specified value
+
+srem hobbies travaling
+------------------------------------------------------------------
+Hashes in redis
+=> HSET <= To define a new hashe
+
+hset person name james age 33
+------------------------------------------------------------------
+=> HGET <= To bring a spcified value by its key
+
+hget person name
+------------------------------------------------------------------
+=> HGETALL <= To bring all
+
+hgetall person
+------------------------------------------------------------------
+=> HDEL <= To delete a spcified value by its key
+
+hdel person name
+------------------------------------------------------------------------
+=> HEXISTS <= To check if is exists
+
+hexists person name
+------------------------------------------------------------------
